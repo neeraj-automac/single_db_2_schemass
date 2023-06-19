@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,20 +71,23 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'schema_pro.wsgi.application'
+# WSGI_APPLICATION = 'schema_pro.wsgi.application'
+ASGI_APPLICATION = 'schema_pro.asgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'my_db',
-        'HOST': 'localhost',
-        'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': 'Neeraj@584',
+        'PASSWORD':'1357',
+        'HOST':'localhost',
+        'PORT':'5432',
     }
 }
 
@@ -127,3 +132,29 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+CHANNEL_LAYERS ={
+    "default":{
+        "BACKEND":"channels_redis.core.RedisChannelLayer",
+        "CONFIG":{
+            # "hosts":[{"65.2.3.42",6379}],
+            "hosts": ["redis://65.2.3.42:6379"],
+
+
+        },
+    },
+}
+
+
+
+
+
+
+MQTT_SERVER = 'broker.hivemq.com'
+MQTT_PORT = 1883
+MQTT_KEEPALIVE = 60
+MQTT_USER = ''
+MQTT_PASSWORD = ''

@@ -3,6 +3,7 @@ from django.db import models
 
 class MachineDetails(models.Model):
     objects = models.Manager()
+    db_timestamp=models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     machine_id = models.CharField(max_length=150)
     machine_location = models.CharField(max_length=250)
@@ -20,3 +21,5 @@ class MachineDetails(models.Model):
     #     return str(self.timestamp)
     #
 
+    def __str__(self):
+        return "%s,%s" %(self.db_timestamp,self.machine_id)
